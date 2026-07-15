@@ -92,9 +92,9 @@ export default function Home() {
               }}
             >
               <img
-                src={personalInfo.avatarUrl}
+                src={"/person-img.jpeg"}
                 alt={personalInfo.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ width: "100%", height: "100%", objectFit: "fill" }}
               />
             </div>
 
@@ -137,7 +137,7 @@ export default function Home() {
 
             {/* Download Resume Button */}
             <a
-              href={personalInfo.resumeUrl}
+              // href={personalInfo.resumeUrl}
               className="glow-border"
               style={{
                 display: "inline-flex",
@@ -154,16 +154,9 @@ export default function Home() {
                 justifyContent: "center",
                 transition: "var(--transition-smooth)",
               }}
-              onClick={(e) => {
-                // If it's #, prevent default and notify it's a placeholder
-                if (personalInfo.resumeUrl === "#") {
-                  e.preventDefault();
-                  alert("Resume PDF download is currently a placeholder. Replace resumeUrl in portfolioData.ts with the actual PDF link.");
-                }
-              }}
+              onClick={() => window.open("/PortFOLIO.pdf", "_blank")}
             >
-              <Download size={16} style={{ color: "var(--accent)" }} />
-              Download Resume
+              View Portfolio
             </a>
           </motion.div>
 
@@ -182,7 +175,7 @@ export default function Home() {
             <h3 className="title-font" style={{ fontSize: "1.75rem", fontWeight: 800, color: "#ffffff" }}>
               Visual Storyteller & Creative Designer
             </h3>
-            
+
             <p style={{ color: "var(--text-secondary)", fontSize: "1.05rem", lineHeight: 1.7 }}>
               {personalInfo.summary}
             </p>
@@ -293,11 +286,11 @@ export default function Home() {
                 {service.icon === "Layout" && <Layers size={24} />}
                 {service.icon === "Zap" && <Award size={24} />}
               </div>
-              
+
               <h3 className="title-font" style={{ fontSize: "1.25rem", fontWeight: 700, color: "#ffffff" }}>
                 {service.title}
               </h3>
-              
+
               <p style={{ color: "var(--text-secondary)", fontSize: "0.85rem", lineHeight: 1.6 }}>
                 {service.description}
               </p>
@@ -514,7 +507,7 @@ export default function Home() {
               </p>
 
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <img
+                {/* <img
                   src={test.avatar}
                   alt={test.name}
                   style={{
@@ -523,7 +516,7 @@ export default function Home() {
                     borderRadius: "50%",
                     objectFit: "cover",
                   }}
-                />
+                /> */}
                 <div>
                   <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: "#ffffff" }}>
                     {test.name}

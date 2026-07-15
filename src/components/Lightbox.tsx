@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { X, Calendar, Wrench, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/data/portfolioData";
@@ -11,10 +11,13 @@ interface LightboxProps {
 }
 
 export default function Lightbox({ item, onClose }: LightboxProps) {
-  // Prevent body scrolling when open
+  const [videoError, setVideoError] = useState(false);
+
+  // Prevent body scrolling when open and reset error state
   useEffect(() => {
     if (item) {
       document.body.style.overflow = "hidden";
+      setVideoError(false);
     } else {
       document.body.style.overflow = "unset";
     }
@@ -111,20 +114,56 @@ export default function Lightbox({ item, onClose }: LightboxProps) {
             }}
           >
             {item.category === "video" ? (
-              <iframe
-                src={`${item.mediaUrl}?autoplay=1&mute=0&rel=0`}
-                title={item.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
-                }}
-              />
+              item.mediaUrl.includes("drive.google.com") ? (
+                <iframe
+                  src={item.mediaUrl}
+                  title={item.title}
+                  allow="autoplay"
+                  allowFullScreen
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              ) : videoError ? (
+                <iframe
+                  src={`${item.fallbackUrl || item.mediaUrl}?autoplay=1&mute=0&rel=0`}
+                  title={item.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              ) : (
+                <video
+                  src={item.mediaUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  onError={() => setVideoError(true)}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              )
             ) : (
               <img
                 src={item.mediaUrl}

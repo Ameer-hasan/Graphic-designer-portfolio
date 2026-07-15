@@ -1,3 +1,5 @@
+import videosLink from "./videosLink.json";
+
 export interface Stat {
   label: string;
   value: string;
@@ -33,6 +35,15 @@ export interface Project {
   mediaUrl: string; // YouTube embed URL, Vimeo URL, or image URL
   tools: string[];
   featured: boolean;
+  fallbackUrl?: string;
+}
+
+function getDirectVideoUrl(driveUrl: string): string {
+  const match = driveUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (match && match[1]) {
+    return `https://drive.google.com/file/d/${match[1]}/preview`;
+  }
+  return driveUrl;
 }
 
 export interface Service {
@@ -82,7 +93,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: "Creative & Design Skills",
-    skills: ["Social Media Creatives", "Branding & Identity", "Motion Graphics & VFX", "Layout & Typography", "Thumbnail & Banner Design"],
+    skills: ["Social Media Creatives", "Branding & Identity", "Motion Graphics", "Layout & Typography", "Thumbnail & Banner Design"],
   },
 ];
 
@@ -149,7 +160,7 @@ export const services: Service[] = [
   },
   {
     id: "m-graph",
-    title: "Motion Graphics & VFX",
+    title: "Motion Graphics",
     description: "Engaging dynamic titles, lower-thirds, custom transitions, and explanation animations that make content stand out.",
     icon: "Activity"
   },
@@ -168,95 +179,148 @@ export const services: Service[] = [
 ];
 
 export const projects: Project[] = [
-  // Video Editing Projects (Youtube Embeds or placeholder MP4s)
+  // Video Editing Projects mapped from videosLink.json
   {
     id: "vid-1",
-    title: "Chairose Travels - Destination Highlight",
-    description: "Cinematic travel campaign showcasing luxury tour packages and destination highlights. Smooth speed-ramps, custom sound design, and color-graded clips.",
+    title: "Video Work Link 1",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
     category: "video",
-    subcategory: "Travel Promo",
-    thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800&h=450",
-    mediaUrl: "https://www.youtube.com/embed/ScMzIvxBSi4", // Beautiful generic travel cinematic video
-    tools: ["Premiere Pro", "After Effects", "Photoshop"],
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+1",
+    mediaUrl: getDirectVideoUrl(videosLink.link1),
+    tools: ["Premiere Pro", "After Effects"],
     featured: true
   },
   {
     id: "vid-2",
-    title: "Mitti & Magic - Fashion Showcase Reel",
-    description: "High-energy promo video for a fashion brand, matching beat-cuts, dynamic motion text overlay, and neon color profiles.",
+    title: "Video Work Link 2",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
     category: "video",
-    subcategory: "Fashion Brand",
-    thumbnail: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800&h=450",
-    mediaUrl: "https://www.youtube.com/embed/A8gZ54t9f2U", // Fashion showcase video placeholder
-    tools: ["After Effects", "Premiere Pro"],
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+2",
+    mediaUrl: getDirectVideoUrl(videosLink.link2),
+    tools: ["Premiere Pro", "After Effects"],
     featured: true
   },
   {
     id: "vid-3",
-    title: "Ranthambore Tiger Machan - Nature Promo",
-    description: "Promotional video highlighting the luxury jungle resort experience, editing cinematic drone shots, wildlife footages, and calm ambient overlays.",
+    title: "Video Work Link 3",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
     category: "video",
-    subcategory: "Resort Promotion",
-    thumbnail: "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&q=80&w=800&h=450",
-    mediaUrl: "https://www.youtube.com/embed/2_H29O0Rj8c", // Wildlife cinematic video placeholder
-    tools: ["Premiere Pro", "After Effects", "Photoshop"],
-    featured: false
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+3",
+    mediaUrl: getDirectVideoUrl(videosLink.link3),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: true
   },
   {
     id: "vid-4",
-    title: "TCD - Correct Diet Recipe Reel",
-    description: "Short-form vertical video recipe reel for health brand social channels. Designed with fast-paced cuts, sound effects, zoom ins, and captions.",
+    title: "Video Work Link 4",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
     category: "video",
-    subcategory: "Social Media Reel",
-    thumbnail: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&q=80&w=800&h=450",
-    mediaUrl: "https://www.youtube.com/embed/c0t499QYdM0", // Healthy cooking food reel placeholder
-    tools: ["Premiere Pro", "CapCut"],
-    featured: false
-  },
-
-  // Graphic Design Projects (High quality photos representing design work)
-  {
-    id: "des-1",
-    title: "Chairose Travels Branding Identity",
-    description: "Complete visual identity design including logo, travel brochures, social media grids, and business cards for a premium travel agency.",
-    category: "design",
-    subcategory: "Branding",
-    thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800&h=533",
-    mediaUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200&h=800",
-    tools: ["Photoshop", "Illustrator"],
-    featured: true
-  },
-  {
-    id: "des-2",
-    title: "Mitti & Magic Brand Marketing Kit",
-    description: "Designed creative social media campaign templates, product tags, digital advertisements, and promotional banners for fashion launch.",
-    category: "design",
-    subcategory: "Marketing Assets",
-    thumbnail: "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&q=80&w=800&h=533",
-    mediaUrl: "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&q=80&w=1200&h=800",
-    tools: ["Photoshop", "Illustrator"],
-    featured: true
-  },
-  {
-    id: "des-3",
-    title: "TCD Product Banner & Advertisements",
-    description: "High-converting digital ads and poster creatives designed to market the healthy meal kit subscriptions for social channels.",
-    category: "design",
-    subcategory: "Social Ad Design",
-    thumbnail: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800&h=533",
-    mediaUrl: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1200&h=800",
-    tools: ["Photoshop", "Illustrator"],
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+4",
+    mediaUrl: getDirectVideoUrl(videosLink.link4),
+    tools: ["Premiere Pro", "After Effects"],
     featured: false
   },
   {
-    id: "des-4",
-    title: "Creative Typography Poster Series",
-    description: "A series of graphic posters focusing on modern typography, alignment layout, and visual contrast overlays for digital release.",
-    category: "design",
-    subcategory: "Typography Poster",
-    thumbnail: "https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&q=80&w=800&h=533",
-    mediaUrl: "https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&q=80&w=1200&h=800",
-    tools: ["Illustrator", "Photoshop"],
+    id: "vid-5",
+    title: "Video Work Link 5",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+5",
+    mediaUrl: getDirectVideoUrl(videosLink.link5),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-6",
+    title: "Video Work Link 6",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+6",
+    mediaUrl: getDirectVideoUrl(videosLink.link6),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-7",
+    title: "Video Work Link 7",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+7",
+    mediaUrl: getDirectVideoUrl(videosLink.link7),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-8",
+    title: "Video Work Link 8",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+8",
+    mediaUrl: getDirectVideoUrl(videosLink.link8),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-9",
+    title: "Video Work Link 9",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+9",
+    mediaUrl: getDirectVideoUrl(videosLink.link9),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-10",
+    title: "Video Work Link 10",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+10",
+    mediaUrl: getDirectVideoUrl(videosLink.link10),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-11",
+    title: "Video Work Link 11",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+11",
+    mediaUrl: getDirectVideoUrl(videosLink.link11),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-12",
+    title: "Video Work Link 12",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+12",
+    mediaUrl: getDirectVideoUrl(videosLink.link12),
+    tools: ["Premiere Pro", "After Effects"],
+    featured: false
+  },
+  {
+    id: "vid-13",
+    title: "Video Work Link 13",
+    description: "Cinematic video edit and storytelling project showcased in the portfolio.",
+    category: "video",
+    subcategory: "Video Editing",
+    thumbnail: "https://placehold.co/800x450/18181b/e4e4e7?text=Video+Work+Link+13",
+    mediaUrl: getDirectVideoUrl(videosLink.link13),
+    tools: ["Premiere Pro", "After Effects"],
     featured: false
   }
 ];
@@ -264,7 +328,7 @@ export const projects: Project[] = [
 export const testimonials: Testimonial[] = [
   {
     id: "test-1",
-    name: "Rohan Sharma",
+    name: "CEO Sir",
     role: "Director of Marketing",
     company: "Softhunters",
     comment: "Ameer has an incredible eye for detail. His edits are snappy, modern, and aligned with our brand's vibe. He turned around our campaign assets in record time and exceeded expectations.",

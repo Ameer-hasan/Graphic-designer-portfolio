@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: process.env.NODE_ENV === "production" ? "/Graphic-designer-portfolio" : undefined,
+  basePath: process.env.NODE_ENV === "production" ? "/Video-Editor-Portfolio" : undefined,
   images: {
     unoptimized: true,
   },

@@ -92,7 +92,7 @@ export default function Home() {
               }}
             >
               <img
-                src={"https://amancodegit.github.io/Video-Editor-Portfolio/images/person-img.jpeg"}
+                src={"https://ameer-hasan.github.io/Video-Editor-Portfolio/images/person-img.jpeg"}
                 alt={personalInfo.name}
                 style={{ width: "100%", height: "100%", objectFit: "fill" }}
               />
@@ -154,7 +154,7 @@ export default function Home() {
                 justifyContent: "center",
                 transition: "var(--transition-smooth)",
               }}
-              onClick={() => window.open("https://amancodegit.github.io/Video-Editor-Portfolio/images/PortFOLIO.pdf", "_blank")}
+              onClick={() => window.open("https://ameer-hasan.github.io/Video-Editor-Portfolio/images/PortFOLIO.pdf", "_blank")}
             >
               View Portfolio
             </a>
